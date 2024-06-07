@@ -1,6 +1,6 @@
 package cl.ucm.clase1.demostracion1.service;
 
-import cl.ucm.clase1.demostracion1.entity.Category;
+import cl.ucm.clase1.demostracion1.entity.CategoryEntity;
 import cl.ucm.clase1.demostracion1.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +13,12 @@ public class CategoryService implements ICategoryService{
     private CategoryRepository repository;
 
     @Override
-    public List<Category> getCategories() {
+    public List<CategoryEntity> getCategories() {
         return repository.findAll();
     }
 
     @Override
-    public Category save(Category category) {
-        return repository.save(category);
+    public CategoryEntity save(CategoryEntity categoryEntity) {
+        return repository.save(categoryEntity);
     }
 }
