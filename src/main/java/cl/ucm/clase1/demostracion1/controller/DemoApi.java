@@ -2,12 +2,12 @@ package cl.ucm.clase1.demostracion1.controller;
 
 
 import cl.ucm.clase1.demostracion1.dto.Person;
+import cl.ucm.clase1.demostracion1.entity.Category;
+import cl.ucm.clase1.demostracion1.service.ICategoryService;
 import cl.ucm.clase1.demostracion1.service.IPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +19,8 @@ public class DemoApi {
 
     @Autowired
     private IPersonService service;
+    @Autowired
+    private ICategoryService categoryService;
 
 
     @GetMapping("/hello")
@@ -50,5 +52,15 @@ public class DemoApi {
         return ResponseEntity.ok(service.personList());
     }
 
+
+    @GetMapping("/categories")
+    public ResponseEntity<?> categories(){
+        return ResponseEntity.ok(categoryService.getCategories());
+    }
+
+    @PostMapping("/categories")
+    public ResponseEntity<?> saveCategory(@RequestBody Category category){
+        return ResponseEntity.ok(categoryService.save(category));
+    }
 
 }
